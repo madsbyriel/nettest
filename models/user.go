@@ -20,6 +20,10 @@ func CreateUser(first_name, last_name string, birth_date, office_id int64) *User
     return &User{0, first_name, last_name, birth_date, office_id}
 }
 
+func (u *User) GetId() int64 {
+    return u.id
+}
+
 // Creates a new user from a scannable object, most likely an sql row.
 func (u *User) Create(scannable table.Scannable) (*User, error) {
     user := &User{}
