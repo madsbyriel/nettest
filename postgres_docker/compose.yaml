@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: mads
+      POSTGRES_PASSWORD: mads
+      POSTGRES_DB: mads
+    ports:
+      - 666:5432
