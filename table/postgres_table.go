@@ -133,10 +133,10 @@ func (pt *postgres_table[T]) Insert(item T) error {
     for k, v := range kvps {
         if counter == 1 {
             nameClause += k
-            valueClause += fmt.Sprintf("%v", counter)
+            valueClause += fmt.Sprintf("$%v", counter)
         } else {
             nameClause += ", " + k
-            valueClause += fmt.Sprintf(", %v", counter)
+            valueClause += fmt.Sprintf(", $%v", counter)
         }
         
         values = append(values, v)
