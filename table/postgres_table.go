@@ -25,6 +25,11 @@ type postgres_table[T SqlCompliant[T]] struct {
     connection db.DB
 }
 
+func CreatePostgresTable[T SqlCompliant[T]](table_name string, connection db.DB) Table[T] {
+    table := postgres_table[T]{table_name, connection}
+    return &table
+}
+
 // Selects the first instance of T by constructing a where clause. 'where' may be nil to select the first.
 func (pt *postgres_table[T]) SelectFirst(where map[string]any) (T, error) {
     // Construct the where clause
