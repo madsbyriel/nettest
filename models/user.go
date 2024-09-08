@@ -13,12 +13,13 @@ type User struct {
     first_name string
     last_name string
     birth_date int64
+    office_id int64
 }
 
 // Creates a new user from a scannable object, most likely an sql row.
 func (u *User) Create(scannable table.Scannable) (*User, error) {
     user := &User{}
-    err := scannable.Scan(&user.id, &user.first_name, &user.last_name, &user.birth_date)
+    err := scannable.Scan(&user.id, &user.first_name, &user.last_name, &user.birth_date, &user.office_id)
     return user, err
 }
 
@@ -47,6 +48,7 @@ func (u *User) GetFields() (map[string]any, error) {
         "first_name": u.first_name,
         "last_name": u.last_name, 
         "birth_date": u.birth_date,
+        "office_id": u.office_id,
     }
 
     return fields, nil
