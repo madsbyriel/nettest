@@ -114,7 +114,11 @@ func (pt *postgres_table[T]) SelectAll(where map[string]any) ([]T, error) {
 
 // Inserts the item T into the table. The GetFields method of T can also make restrictions by returning an error.
 func (pt *postgres_table[T]) Insert(item T) error {
-    kvps := item.GetFields()
+    kvps, err := item.GetFields()
+
+    if err != nil {
+        return err
+    }
 
     // Construct the clauses for the sql query
     nameClause := ""
